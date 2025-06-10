@@ -23,5 +23,3 @@ for num in nums:
         answer += 1
 
 print(answer)
-
-
