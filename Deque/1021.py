@@ -2,21 +2,22 @@ import sys
 input = sys.stdin.readline
 from collections import deque
 
-n,m = map(int, input().split())
-target_numbers = list(map(int, input().split()))
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+
+dq = deque(range(1, N+1))
 answer = 0
 
-dqe = deque(range(1, n+1))
+for n in nums:
+    idx = dq.index(n)
 
-for target in target_numbers:
-    idx = dqe.index(target)
-    
-    if idx <= len(dqe) // 2:
-        dqe.rotate(-idx)
+    if idx <= len(dq) // 2:
         answer += idx
+        dq.rotate(-idx)
     else:
-        dqe.rotate(len(dqe) - idx)
-        answer += len(dqe) - idx
-    dqe.popleft()
+        answer += len(dq) - idx
+        dq.rotate(len(dq)-idx)
+    
+    dq.popleft()
 
 print(answer)
